@@ -1,0 +1,10 @@
+[
+	{
+		"manufacturer": "Electro-Harmonix",
+		"model": "Deluxe Memory Man", 
+		"backgroundColor": "#b1b1aa",
+		"foregroundColor": "#161615",
+		"dimensions": {"width": 200, "height": 174.625},
+		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+	}
+]
