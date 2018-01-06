@@ -5,6 +5,32 @@
 		"backgroundColor": "#b9b9b9",
 		"foregroundColor": "#3b3c46",
 		"dimensions": {"width": 205, "height": 161},
-		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"potentiometers": [
+			{
+				"name": "Ratio",
+				"value": "0"
+			},
+			{
+				"name": "Attack",
+				"value": "0"
+			},
+			{
+				"name": "Release",
+				"value": "0"
+			},
+			{
+				"name": "Output",
+				"value": "0"
+			},
+			{
+				"name": "Input/Comp",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Instrument"},
+			{"name": "Amplifier"}
+		]
 	}
 ]

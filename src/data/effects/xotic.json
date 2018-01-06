@@ -5,6 +5,16 @@
 		"backgroundColor": "#0a0d17",
 		"foregroundColor": "#f2f1f7",
 		"dimensions": {"width": 38, "height": 89},
-		"sockets": {"top": false, "right": true, "bottom": false, "left": true}
+		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"potentiometers": [
+			{
+				"name": "Boost",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "In"},
+			{"name": "Out"}
+		]
 	}
 ]

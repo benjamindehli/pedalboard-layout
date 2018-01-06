@@ -5,6 +5,57 @@
 		"backgroundColor": "#1f1f28",
 		"foregroundColor": "#faf9fe",
 		"dimensions": {"width": 220, "height": 150},
-		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"switches": [
+			{
+				"name": "Function",
+				"options": [
+					"Trem",
+					"Vib",
+					"Chorus"
+				]
+			},
+			{
+				"name": "Speed Range",
+				"options": [
+					"Classic Slow",
+					"Classic Medium",
+					"Classic Fast",
+					"Pulse Slow",
+					"Pulse Medium",
+					"Pulse Fast"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Speed",
+				"value": "0"
+			},
+			{
+				"name": "Intensity",
+				"value": "0"
+			},
+			{
+				"name": "Symmetry",
+				"value": "0"
+			},
+			{
+				"name": "Bias",
+				"value": "0"
+			},
+			{
+				"name": "Output",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "HW Out"},
+			{"name": "Buffered Out 1"},
+			{"name": "Buffered Out 2"},
+			{"name": "External Speed To"},
+			{"name": "External Speed From"}
+		]
 	}
 ]

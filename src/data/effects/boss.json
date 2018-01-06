@@ -5,6 +5,41 @@
 		"backgroundColor": "#808275",
 		"foregroundColor": "#f77f38",
 		"dimensions": {"width": 260, "height": 180},
-		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"switches": [
+			{
+				"name": "Input",
+				"options": [
+					"High",
+					"Low"
+				]
+			},
+			{
+				"name": "Chorus/Vibrato",
+				"options": [
+					"Chorus",
+					"Vibrato"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Chorus Intensity",
+				"value": "0"
+			},
+			{
+				"name": "Vibrato Depth",
+				"value": "0"
+			},
+			{
+				"name": "Vibrato Rate",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output Mono"},
+			{"name": "Output Stereo"}
+		]
 	}
 ]

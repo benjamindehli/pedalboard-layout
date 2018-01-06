@@ -5,6 +5,53 @@
 		"backgroundColor": "#d6dde0",
 		"foregroundColor": "#1500c6",
 		"dimensions": {"width": 182.88, "height": 116.84},
-		"sockets": {"top": true, "right": false, "bottom": false, "left": true}
+		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": true},
+		"switches": [
+			{
+				"name": "Slapback",
+				"options": [
+					"On",
+					"Off"
+				]
+			},
+			{
+				"name": "Dotted 8th Note",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Delay",
+				"value": "0"
+			},
+			{
+				"name": "Feedback EQ",
+				"value": "0"
+			},
+			{
+				"name": "Feedback Level",
+				"value": "0"
+			},
+			{
+				"name": "Modulation Speed",
+				"value": "0"
+			},
+			{
+				"name": "Modulation Depth",
+				"value": "0"
+			},
+			{
+				"name": "Mix",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Delay only"},
+			{"name": "Mix/Direct"}
+		]
 	}
 ]

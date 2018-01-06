@@ -32,10 +32,10 @@ export default {
   props: ['metadata'],
   computed: {
     socketsStyle: function(){
-      let paddingTop = this.metadata.sockets.top ? '15px' : 0;
-      let paddingRight = this.metadata.sockets.right ? '15px' : 0;
-      let paddingBottom = this.metadata.sockets.bottom ? '15px' : 0;
-      let paddingLeft = this.metadata.sockets.left ? '15px' : 0;
+      let paddingTop = this.metadata.socketsPlacement.top ? '15px' : 0;
+      let paddingRight = this.metadata.socketsPlacement.right ? '15px' : 0;
+      let paddingBottom = this.metadata.socketsPlacement.bottom ? '15px' : 0;
+      let paddingLeft = this.metadata.socketsPlacement.left ? '15px' : 0;
 
       return `transform: rotate(${this.rotate}deg); padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;
     },
