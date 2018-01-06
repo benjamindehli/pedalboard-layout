@@ -2,6 +2,8 @@
 	{
 		"manufacturer": "Roger Mayer",
 		"model": "Voodoo-Vibe+", 
+		"backgroundColor": "#1f1f28",
+		"foregroundColor": "#faf9fe",
 		"dimensions": {"width": 220, "height": 150},
 		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
 	}

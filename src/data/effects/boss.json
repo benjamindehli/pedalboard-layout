@@ -2,6 +2,8 @@
 	{
 		"manufacturer": "Boss",
 		"model": "CE-1", 
+		"backgroundColor": "#808275",
+		"foregroundColor": "#f77f38",
 		"dimensions": {"width": 260, "height": 180},
 		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
 	}

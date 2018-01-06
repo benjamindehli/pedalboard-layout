@@ -2,7 +2,9 @@
 	{
 		"manufacturer": "Diamond",
 		"model": "Memory Lane 2", 
+		"backgroundColor": "#d6dde0",
+		"foregroundColor": "#1500c6",
 		"dimensions": {"width": 182.88, "height": 116.84},
-		"sockets": {"top": true, "right": true, "bottom": false, "left": false}
+		"sockets": {"top": true, "right": false, "bottom": false, "left": true}
 	}
 ]
