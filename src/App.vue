@@ -2,12 +2,14 @@
   <div id="app">
     <div>
       <div is="box" v-bind:metadata="box" v-for="box in boxes"></div>
+      <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
     </div>
 
   </div>
 </template>
 
 <script>
+import PedalBoard from "./components/PedalBoard.vue";
 import Box from "./components/Box.vue";
 export default {
   name: 'app',
@@ -23,11 +25,14 @@ export default {
         manufacturer: 'Roger Mayer',
         model: 'Voodoo-Vibe+', 
         dimensions: {width: 220, height: 150}
+      pedalBoard: {
+        dimensions: {width: 930, height: 570}
       }
       ]
     }
   },
   components: {
+    PedalBoard,
     Box
   },
   methods: {
