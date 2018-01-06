@@ -3,12 +3,16 @@
   v-on:mouseup="destroy" 
   v-on:mousemove="move_elem($event)" 
   v-on:mousedown="dragInit($event)"
-  v-bind:style="style" 
+  v-bind:style="socketsStyle"
+  class="sockets">
+  <div 
+  v-bind:style="boxStyle" 
   class="box">
   <div>
     <span>{{metadata.manufacturer}}</span>
     <span>{{metadata.model}}</span>
   </div>
+</div>
 </div>
 </template>
 
@@ -26,15 +30,27 @@ export default {
   },
   props: ['metadata'],
   computed: {
-    style: function(){
+    socketsStyle: function(){
+      let paddingTop = this.metadata.sockets.top ? '15px' : 0;
+      let paddingRight = this.metadata.sockets.right ? '15px' : 0;
+      let paddingBottom = this.metadata.sockets.bottom ? '15px' : 0;
+      let paddingLeft = this.metadata.sockets.left ? '15px' : 0;
+      
+      return `padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;
+    },
+    boxStyle: function(){
       let width = 'width: ' + this.metadata.dimensions.width + 'px;';
       let height = 'height: ' + this.metadata.dimensions.height + 'px;';
       return `${width} ${height}`;
     }
   },
   methods: {
+    findAncestor: function (el, cls) {
+      while ((el = el.parentElement) && !el.classList.contains(cls));
+      return el;
+    },
     dragInit: function (event) {
-      let element = event.target;
+      let element = this.findAncestor(event.target, 'sockets');
       this.selected = element;
       this.x_elem = this.x_pos - this.selected.offsetLeft;
       this.y_elem = this.y_pos - this.selected.offsetTop;
@@ -55,10 +71,11 @@ export default {
 </script>
 
 <style lang="scss">
-.box {
+.sockets{
   position:absolute;
-  width:120px;
-  height:120px;
+  background-color: rgba(100,110,200,.3);
+}
+.box {
   background-color:#678;
   border: 1px solid #567;
   color:white;

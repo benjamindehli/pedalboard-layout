@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <div>
-      <div is="box" v-bind:metadata="box" v-for="box in boxes"></div>
       <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
+      <div v-for="manufacturer in manufacturers">
+        <div is="box" v-bind:manufaturer="manufacturer.name" v-bind:metadata="box" v-for="box in manufacturer.effects"></div>
+      </div>
+
     </div>
 
   </div>
 </template>
-
 <script>
 import PedalBoard from "./components/PedalBoard.vue";
 import Box from "./components/Box.vue";
@@ -15,20 +17,15 @@ export default {
   name: 'app',
   data () {
     return {
-      boxes: [
-      {
-        manufacturer: 'Boss',
-        model: 'CE-1', 
-        dimensions: {width: 260, height: 180}
-      },
-      {
-        manufacturer: 'Roger Mayer',
-        model: 'Voodoo-Vibe+', 
-        dimensions: {width: 220, height: 150}
+      manufacturers: [
+      {name: 'Boss', effects: require("./data/effects/boss.json")},
+      {name: 'Diamond', effects: require("./data/effects/diamond.json")},
+      {name: 'Roger Mayer', effects: require("./data/effects/roger-mayer.json")},
+      {name: 'Xotic', effects: require("./data/effects/xotic.json")}
+      ],
       pedalBoard: {
         dimensions: {width: 930, height: 570}
       }
-      ]
     }
   },
   components: {
@@ -36,23 +33,6 @@ export default {
     Box
   },
   methods: {
-    dragInit: function (event) {
-      let element = event.target;
-      this.selected = element;
-      this.x_elem = this.x_pos - this.selected.offsetLeft;
-      this.y_elem = this.y_pos - this.selected.offsetTop;
-    },
-    destroy: function() {
-      this.selected = null;
-    },
-    move_elem: function(e) {
-      this.x_pos = document.all ? window.event.clientX : e.pageX;
-      this.y_pos = document.all ? window.event.clientY : e.pageY;
-      if (this.selected !== null) {
-        this.selected.style.left = (this.x_pos - this.x_elem) + 'px';
-        this.selected.style.top = (this.y_pos - this.y_elem) + 'px';
-      }
-    }
   }
 }
 </script>
