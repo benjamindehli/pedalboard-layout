@@ -12,6 +12,21 @@
     <span>{{metadata.manufacturer}}</span>
     <span>{{metadata.model}}</span>
   </div>
+  <div v-show="$parent.showConnections" v-for="socket in sockets">
+    <label>
+      {{ socket.name }}
+      <select v-model="socket.value">
+        <optgroup v-bind:label="availableConnection.manufacturer + ' ' + availableConnection.model" v-for="availableConnection in $parent.availableConnections">
+          <option v-bind:value="{
+            manufacturer: availableConnection.manufacturer, 
+            model: availableConnection.model, 
+            socket: socket
+          }" v-for="socket in availableConnection.sockets">{{ socket.name }}</option>
+        </optgroup>
+      </select>
+    </label>
+  </div>
+
 </div>
 </div>
 </template>
@@ -26,10 +41,50 @@ export default {
       y_pos: 0,
       x_elem: 0,
       y_elem: 0,
-      rotate: 0
+      rotate: 0,
+      sockets: []
     }
   },
-  props: ['metadata'],
+  props: ['metadata', 'effectIndex', 'manufacturerIndex'],
+  mounted: function () {
+    this.$parent.availableConnections = this.$parent.getAvailableConnections();
+    this.metadata.sockets.forEach(function(socket){
+      this.sockets.push({
+        name: socket.name,
+        value: {}
+      });
+    }.bind(this));
+  },
+  watch: {
+    sockets: {
+      handler: function(sockets) {
+        sockets.forEach(function(socket, socketIndex){
+          let connectionFrom = {
+            manufacturer: this.metadata.manufacturer,
+            model: this.metadata.model,
+            socket: {
+              binding: {
+                effectIndex: this.effectIndex,
+                manufacturerIndex: this.manufacturerIndex,
+                socketIndex: socketIndex
+              },
+              name: socket.name
+            }
+          };
+          let connectionTo = {
+            manufacturer: socket.value.manufacturer,
+            model: socket.value.model,
+            socket: socket.value.socket
+          };
+          if (connectionTo.socket){
+            this.$parent.changeConnection(connectionFrom, connectionTo);
+          }
+        }.bind(this));
+        
+      },
+      deep: true
+    } 
+  },
   computed: {
     socketsStyle: function(){
       let paddingTop = this.metadata.socketsPlacement.top ? '15px' : 0;
@@ -48,6 +103,7 @@ export default {
 
       return `${width} ${height} ${foregroundColor} ${backgroundColor}`;
     }
+    
   },
   methods: {
     findAncestor: function (el, cls) {
@@ -55,6 +111,7 @@ export default {
       return el;
     },
     dragInit: function (event) {
+      if (event.target.classList.contains('sockets')) return;
       let element = this.findAncestor(event.target, 'sockets');
       this.selected = element;
       this.x_elem = this.x_pos - this.selected.offsetLeft;

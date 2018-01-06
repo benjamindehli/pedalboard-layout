@@ -7,6 +7,7 @@
       <label>Depth: <input type="number" min="0" v-model="pedalBoard.dimensions.height" />mm</label>
       <label>Color: <input type="color" v-model="pedalBoard.backgroundColor" /></label>
     </div>
+    <label><input type="checkbox" v-model="showConnections" />Show connections</label>
     <div>
       <p>Add pedal:</p>
       <label>
@@ -27,8 +28,11 @@
 
     </div>
     <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
-    <div v-for="manufacturer in selectedEffects.manufacturers">
-      <div is="box" v-bind:manufacturer="manufacturer.name" v-bind:metadata="box" v-for="box in manufacturer.effects"></div>
+    <div v-for="(manufacturer, manufacturerIndex) in selectedEffects.manufacturers">
+      <div is="box" 
+      v-bind:effect-index="effectIndex"
+      v-bind:manufacturer-index="manufacturerIndex" 
+      v-bind:metadata="effect" v-for="(effect, effectIndex) in manufacturer.effects"></div>
     </div>
   </div>
 </div>
@@ -64,7 +68,10 @@ export default {
       pedalBoard: {
         dimensions: {width: 930, height: 570},
         backgroundColor: "#555555"
-      }
+      },
+      connections: {},
+      availableConnections: [],
+      showConnections: false
     }
   },
   components: {
@@ -77,6 +84,9 @@ export default {
       let hasSelectedManufacturer = this.newEffect.manufacturer.name.length;
       return !hasSelectedManufacturer || !hasSelectedEffect;
     }
+  },
+  mounted: function (){
+    this.availableConnections = this.getAvailableConnections();
   },
   methods: {
     addEffect: function(){
@@ -101,6 +111,38 @@ export default {
           }
         }
       }.bind(this));
+    },
+    getAvailableConnections: function () {
+      let availableConnections = [];
+      this.selectedEffects.manufacturers.forEach(function(manufacturer, manufacturerIndex){
+        manufacturer.effects.forEach(function (effect, effectIndex){
+          let sockets = [];
+          effect.sockets.forEach(function(socket, socketIndex){
+            sockets.push({
+              name: socket.name,
+              binding: {
+                manufacturerIndex: manufacturerIndex,
+                effectIndex: effectIndex,
+                socketIndex: socketIndex
+              }
+            });
+          });
+          availableConnections.push({
+            manufacturer: effect.manufacturer,
+            model: effect.model,
+            sockets: sockets
+          })
+        })
+      });
+      return availableConnections;
+    },
+    getIdFromConnectionBinding: function(binding){
+      return `${binding.manufacturerIndex}-${binding.effectIndex}-${binding.socketIndex}`;
+    },
+    changeConnection: function (connectionFrom, connectionTo){
+      let connectionFromBinding = connectionFrom.socket.binding;
+      let connectionToBinding = connectionTo.socket.binding;
+      this.connections[this.getIdFromConnectionBinding(connectionFromBinding)] = this.getIdFromConnectionBinding(connectionToBinding);
     }
   }
 }
