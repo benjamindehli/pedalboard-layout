@@ -5,6 +5,6 @@
 		"backgroundColor": "#b9b9b9",
 		"foregroundColor": "#3b3c46",
 		"dimensions": {"width": 205, "height": 161},
-		"sockets": {"top": true, "right": true, "bottom": false, "left": false}
+		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
 	}
 ]
