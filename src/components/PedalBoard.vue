@@ -18,7 +18,8 @@ export default {
     pedalBoardStyle: function(){
       let width = 'width: ' + this.metadata.dimensions.width + 'px;';
       let height = 'height: ' + this.metadata.dimensions.height + 'px;';
-      return `${width} ${height}`;
+      let backgroundColor = 'backgroundColor:' + this.metadata.backgroundColor + ';';
+      return `${width} ${height} ${backgroundColor}`;
     }
   },
   methods: {
@@ -29,8 +30,6 @@ export default {
 <style lang="scss">
 .pedal-board {
   position: absolute;
-  background-color:#999;
-  border: 1px solid #888;
   color:white;
   padding:0;
 }
