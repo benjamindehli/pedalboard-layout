@@ -1,0 +1,8 @@
+[
+	{
+		"manufacturer": "Xotic",
+		"model": "EP-Booster", 
+		"dimensions": {"width": 38, "height": 89},
+		"sockets": {"top": false, "right": true, "bottom": false, "left": true}
+	}
+]

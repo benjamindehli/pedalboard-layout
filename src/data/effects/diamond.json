@@ -1,0 +1,8 @@
+[
+	{
+		"manufacturer": "Diamond",
+		"model": "Memory Lane 2", 
+		"dimensions": {"width": 182.88, "height": 116.84},
+		"sockets": {"top": true, "right": true, "bottom": false, "left": false}
+	}
+]

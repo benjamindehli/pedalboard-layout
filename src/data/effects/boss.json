@@ -1,0 +1,8 @@
+[
+	{
+		"manufacturer": "Boss",
+		"model": "CE-1", 
+		"dimensions": {"width": 260, "height": 180},
+		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+	}
+]

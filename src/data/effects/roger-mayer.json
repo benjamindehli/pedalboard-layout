@@ -1,0 +1,8 @@
+[
+	{
+		"manufacturer": "Roger Mayer",
+		"model": "Voodoo-Vibe+", 
+		"dimensions": {"width": 220, "height": 150},
+		"sockets": {"top": true, "right": false, "bottom": false, "left": false}
+	}
+]
