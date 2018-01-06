@@ -25,7 +25,8 @@ export default {
       x_pos: 0,
       y_pos: 0,
       x_elem: 0,
-      y_elem: 0
+      y_elem: 0,
+      rotate: 0
     }
   },
   props: ['metadata'],
@@ -35,13 +36,17 @@ export default {
       let paddingRight = this.metadata.sockets.right ? '15px' : 0;
       let paddingBottom = this.metadata.sockets.bottom ? '15px' : 0;
       let paddingLeft = this.metadata.sockets.left ? '15px' : 0;
-      
-      return `padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;
+
+      return `transform: rotate(${this.rotate}deg); padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;
     },
     boxStyle: function(){
       let width = 'width: ' + this.metadata.dimensions.width + 'px;';
       let height = 'height: ' + this.metadata.dimensions.height + 'px;';
-      return `${width} ${height}`;
+
+      let foregroundColor = 'color: ' + this.metadata.foregroundColor + ';';
+      let backgroundColor = 'background-color: ' + this.metadata.backgroundColor + ';';
+
+      return `${width} ${height} ${foregroundColor} ${backgroundColor}`;
     }
   },
   methods: {

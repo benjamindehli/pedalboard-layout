@@ -28,6 +28,7 @@ export default {
 
 <style lang="scss">
 .pedal-board {
+  position: absolute;
   background-color:#999;
   border: 1px solid #888;
   color:white;
