@@ -42,5 +42,41 @@
 			{"name": "Echo out"},
 			{"name": "Direct out"}
 		]
+	},
+	{
+		"manufacturer": "Electro-Harmonix",
+		"model": "English Muff'n", 
+		"backgroundColor": "#b1b1aa",
+		"foregroundColor": "#161615",
+		"dimensions": {"width": 157.5, "height": 269},
+		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Gain",
+				"value": "0"
+			},
+			{
+				"name": "High",
+				"value": "0"
+			},
+			{
+				"name": "Mid",
+				"value": "0"
+			},
+			{
+				"name": "Low",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
 	}
 ]

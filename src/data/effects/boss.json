@@ -41,5 +41,103 @@
 			{"name": "Output Mono"},
 			{"name": "Output Stereo"}
 		]
+	},
+	{
+		"manufacturer": "Boss",
+		"model": "DM-2", 
+		"backgroundColor": "#8e0432",
+		"foregroundColor": "#040202",
+		"dimensions": {"width": 73, "height": 129},
+		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Repeat Rate",
+				"value": "0"
+			},
+			{
+				"name": "Echo",
+				"value": "0"
+			},
+			{
+				"name": "Intensity",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	},
+	{
+		"manufacturer": "Boss",
+		"model": "DM-2w", 
+		"backgroundColor": "#8e0432",
+		"foregroundColor": "#040202",
+		"dimensions": {"width": 73, "height": 129},
+		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"switches": [
+			{
+				"name": "Echo",
+				"options": [
+					"Standard",
+					"Custom"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Repeat Rate",
+				"value": "0"
+			},
+			{
+				"name": "Echo",
+				"value": "0"
+			},
+			{
+				"name": "Intensity",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Rate"},
+			{"name": "Output"},
+			{"name": "Direct Out"}
+		]
+	},
+	{
+		"manufacturer": "Boss",
+		"model": "NS-2", 
+		"backgroundColor": "#c4c6be",
+		"foregroundColor": "#393847",
+		"dimensions": {"width": 73, "height": 129},
+		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"switches": [
+			{
+				"name": "Mode",
+				"options": [
+					"Reduction",
+					"Mute"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Treshold",
+				"value": "0"
+			},
+			{
+				"name": "Decay",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Return"},
+			{"name": "Output"},
+			{"name": "Send"}
+		]
 	}
 ]

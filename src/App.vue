@@ -38,6 +38,7 @@ export default {
         manufacturers: [
         {name: 'Boss', effects: require("./data/effects/boss.json")},
         {name: 'Diamond', effects: require("./data/effects/diamond.json")},
+        {name: 'Digitech', effects: require("./data/effects/digitech.json")},
         {name: 'Electro-Harmonix', effects: require("./data/effects/electro-harmonix.json")},
         {name: 'Origin Effects', effects: require("./data/effects/origin-effects.json")},
         {name: 'Roger Mayer', effects: require("./data/effects/roger-mayer.json")},
