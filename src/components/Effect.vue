@@ -33,7 +33,7 @@
 
 <script>
 export default {
-  name: 'box',
+  name: 'effect',
   data () {
     return {
       selected: null,

@@ -40,9 +40,13 @@
 
 <script>
 import PedalBoard from "./components/PedalBoard.vue";
-import Box from "./components/Box.vue";
+import Effect from "./components/Effect.vue";
 export default {
   name: 'app',
+  components: {
+    PedalBoard,
+    Effect
+  },
   data () {
     return {
       availableEffects: {
@@ -73,10 +77,6 @@ export default {
       availableConnections: [],
       showConnections: false
     }
-  },
-  components: {
-    PedalBoard,
-    Box
   },
   computed: {
     disableAddPedalButton: function() {
