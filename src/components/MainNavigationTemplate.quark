@@ -32,7 +32,7 @@ let selectLists = {
 
 
 let pedalBoardSettingsModal = Modal.getModule({
-    id: 'SettingsModal',
+    id: 'pedalBoardSettingsModal',
     triggerElement: '<span class="fa fa-cog"></span> Settings',
     modalElement: {
         content: `<div is="pedal-board-settings"></div>`,
@@ -40,8 +40,17 @@ let pedalBoardSettingsModal = Modal.getModule({
     }
 });
 
+let addEffectModal = Modal.getModule({
+    id: 'addEffectModal',
+    triggerElement: '<span class="fa fa-cog"></span> Add effect',
+    modalElement: {
+        content: `<div is="add-effect"></div>`,
+        scrollable: true
+    }
+});
 
-let htmlContent = `<div class="navbar-html-content">${pedalBoardSettingsModal}</div>`;
+
+let htmlContent = `<div class="navbar-html-content">${pedalBoardSettingsModal}${addEffectModal}</div>`;
 
 let header = Header.getModule({
 	id: 'main-header',

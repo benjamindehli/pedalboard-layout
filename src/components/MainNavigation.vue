@@ -2,12 +2,14 @@
 import * as quark from 'quark-gui';
 import MainNavigationTemplate from "./MainNavigationTemplate.quark";
 import PedalBoardSettings from "./modals/PedalBoardSettings.vue";
+import AddEffect from "./modals/AddEffect.vue";
 
 export default {
     name: 'MainNavigation',
     template: MainNavigationTemplate,
     components: {
-        PedalBoardSettings
+        PedalBoardSettings,
+        AddEffect
     }
 }
 </script>
