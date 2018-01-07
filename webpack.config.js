@@ -1,5 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const cssIdentifier = process.env.NODE_ENV === 'production' ? '[hash:base64:10]' : '[path][name]---[local]';
+
+const sassLoader = process.env.NODE_ENV === 'production'
+? ExtractTextPlugin.extract({
+  use: 'css-loader?minimize!sass-loader?localIdentName=' + cssIdentifier
+})
+:   ['style-loader', 'css-loader?localIdentName=' + cssIdentifier, 'sass-loader'];
 
 module.exports = {
   entry: './src/main.js',
@@ -19,11 +28,8 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader'
-        ],
+        use: sassLoader,
+        exclude: '/node_modules/'
       },
       {
         test: /\.sass$/,
@@ -61,11 +67,28 @@ module.exports = {
         exclude: /node_modules/
       },
       {
+        test: /\.quark$/,
+        loaders: ['babel-loader'],
+        exclude: '/node_modules/'
+      },
+      {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
         }
+      },
+      { 
+        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+        use: "file-loader?name=fonts/[hash:12].[ext]" 
+      }, 
+      { 
+        test: /\.svg(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+        use: "svg-url-loader?noquotes&limit=1024&prefix=svg/[hash:12].[ext]"
+      },
+      {  
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,  
+        use: "url-loader?limit=10000&mimetype=application/font-woff&name=fonts/[hash:12].[ext]"  
       }
     ]
   },
