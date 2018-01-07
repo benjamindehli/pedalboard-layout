@@ -1,49 +1,55 @@
 <template>
   <div id="app">
-    <div>
-     <div>
-      <p>Pedalboard</p>
-      <label>Width:<input type="number" min="0" v-model="pedalBoard.dimensions.width" />mm</label>
-      <label>Depth: <input type="number" min="0" v-model="pedalBoard.dimensions.height" />mm</label>
-      <label>Color: <input type="color" v-model="pedalBoard.backgroundColor" /></label>
-    </div>
-    <label><input type="checkbox" v-model="showConnections" />Show connections</label>
-    <div>
-      <p>Add pedal:</p>
-      <label>
-        Manufacturer:
-        <select v-model="newEffect.manufacturer">
-          <option v-bind:value="manufacturer" v-for="manufacturer in availableEffects.manufacturers">
-            {{ manufacturer.name }}
-          </option>
-        </select>
-      </label>
-      <label>
-        Model:
-        <select v-model="newEffect.selectedEffect">
-          <option v-bind:value="effect" v-for="effect in newEffect.manufacturer.effects">{{ effect.model }}</option>
-        </select>
-      </label>
-      <button v-bind:disabled="disableAddPedalButton" v-on:click="addEffect">Add pedal</button>
+    <main-navigation></main-navigation>
+    <main id="mainContent">
+      <div class="main-content">
+       <div>
+        <p>Pedalboard</p>
+        <label>Width:<input type="number" min="0" v-model="pedalBoard.dimensions.width" />mm</label>
+        <label>Depth: <input type="number" min="0" v-model="pedalBoard.dimensions.height" />mm</label>
+        <label>Color: <input type="color" v-model="pedalBoard.backgroundColor" /></label>
+      </div>
+      <label><input type="checkbox" v-model="showConnections" />Show connections</label>
+      <div>
+        <p>Add pedal:</p>
+        <label>
+          Manufacturer:
+          <select v-model="newEffect.manufacturer">
+            <option v-bind:value="manufacturer" v-for="manufacturer in availableEffects.manufacturers">
+              {{ manufacturer.name }}
+            </option>
+          </select>
+        </label>
+        <label>
+          Model:
+          <select v-model="newEffect.selectedEffect">
+            <option v-bind:value="effect" v-for="effect in newEffect.manufacturer.effects">{{ effect.model }}</option>
+          </select>
+        </label>
+        <button v-bind:disabled="disableAddPedalButton" v-on:click="addEffect">Add pedal</button>
 
+      </div>
+      <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
+      <div v-for="(manufacturer, manufacturerIndex) in selectedEffects.manufacturers">
+        <div is="effect" 
+        v-bind:effect-index="effectIndex"
+        v-bind:manufacturer-index="manufacturerIndex" 
+        v-bind:metadata="effect" v-for="(effect, effectIndex) in manufacturer.effects"></div>
+      </div>
     </div>
-    <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
-    <div v-for="(manufacturer, manufacturerIndex) in selectedEffects.manufacturers">
-      <div is="box" 
-      v-bind:effect-index="effectIndex"
-      v-bind:manufacturer-index="manufacturerIndex" 
-      v-bind:metadata="effect" v-for="(effect, effectIndex) in manufacturer.effects"></div>
-    </div>
-  </div>
+  </main>
 </div>
 </template>
 
 <script>
+import * as quark from 'quark-gui';
+import MainNavigation from './components/MainNavigation.vue';
 import PedalBoard from "./components/PedalBoard.vue";
 import Effect from "./components/Effect.vue";
 export default {
   name: 'app',
   components: {
+    MainNavigation,
     PedalBoard,
     Effect
   },
