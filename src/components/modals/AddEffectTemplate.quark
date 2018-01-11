@@ -1,0 +1,38 @@
+import * as quark from "quark-gui";
+
+let SelectList = quark.Molecules.FormElements.SelectList;
+let Button = quark.Atoms.Buttons.Button;
+
+
+let effectSelectList = SelectList.getModule({
+    id: "new-pedal-manufacturer",
+    name: "new-pedal-manufacturer",
+    label: "Effect",
+    placeholder: "Choose effect",
+    searchable: true,
+    vueBindings: {
+        options: 'effectsOptionList',
+        value: 'selectedEffectId'
+    }
+});
+
+let addEffectButton = Button.getModule({
+    content: 'Add effect',
+    attributes: [
+        'v-on:click="getEffectById()"'
+    ]
+})
+
+
+let htmlContent = `<div class="navbar-html-content">${effectSelectList} ${addEffectButton} <pre>{{ $parent.$parent.newEffect }}</pre></div>`;
+
+
+
+
+let template = `
+<div>
+${htmlContent}
+</div>
+`;
+
+export default template;

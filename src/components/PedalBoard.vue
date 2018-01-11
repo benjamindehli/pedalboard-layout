@@ -16,8 +16,8 @@ export default {
   props: ['metadata'],
   computed: {
     pedalBoardStyle: function(){
-      let width = 'width: ' + this.metadata.dimensions.width + 'px;';
-      let height = 'height: ' + this.metadata.dimensions.height + 'px;';
+      let width = 'width: ' + this.metadata.dimensions.width * (this.$parent.pedalBoard.zoom/100) + 'px;';
+      let height = 'height: ' + this.metadata.dimensions.height * (this.$parent.pedalBoard.zoom/100) + 'px;';
       let backgroundColor = 'backgroundColor:' + this.metadata.backgroundColor + ';';
       return `${width} ${height} ${backgroundColor}`;
     }
@@ -29,8 +29,9 @@ export default {
 
 <style lang="scss">
 .pedal-board {
-  position: absolute;
   color:white;
   padding:0;
+  margin: auto;
+  position: absolute;
 }
 </style>

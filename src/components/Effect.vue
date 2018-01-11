@@ -12,28 +12,23 @@
     <span>{{metadata.manufacturer}}</span>
     <span>{{metadata.model}}</span>
   </div>
-  <div v-show="$parent.showConnections" v-for="socket in sockets">
-    <label>
-      {{ socket.name }}
-      <select v-model="socket.value">
-        <optgroup v-bind:label="availableConnection.manufacturer + ' ' + availableConnection.model" v-for="availableConnection in $parent.availableConnections">
-          <option v-bind:value="{
-            manufacturer: availableConnection.manufacturer, 
-            model: availableConnection.model, 
-            socket: socket
-          }" v-for="socket in availableConnection.sockets">{{ socket.name }}</option>
-        </optgroup>
-      </select>
-    </label>
+  <div v-show="$parent.showConnections">
+    <div v-for="(socket, socketIndex) in metadata.sockets">
+      <div is="socket" v-bind:socket="socket" v-bind:socket-index="socketIndex"></div>
+    </div>
   </div>
-
 </div>
 </div>
 </template>
 
 <script>
+import Socket from "./effect/Socket.vue";
+
 export default {
   name: 'effect',
+  components: {
+    Socket
+  },
   data () {
     return {
       selected: null,
@@ -45,46 +40,7 @@ export default {
       sockets: []
     }
   },
-  props: ['metadata', 'effectIndex', 'manufacturerIndex'],
-  mounted: function () {
-    this.$parent.availableConnections = this.$parent.getAvailableConnections();
-    this.metadata.sockets.forEach(function(socket){
-      this.sockets.push({
-        name: socket.name,
-        value: {}
-      });
-    }.bind(this));
-  },
-  watch: {
-    sockets: {
-      handler: function(sockets) {
-        sockets.forEach(function(socket, socketIndex){
-          let connectionFrom = {
-            manufacturer: this.metadata.manufacturer,
-            model: this.metadata.model,
-            socket: {
-              binding: {
-                effectIndex: this.effectIndex,
-                manufacturerIndex: this.manufacturerIndex,
-                socketIndex: socketIndex
-              },
-              name: socket.name
-            }
-          };
-          let connectionTo = {
-            manufacturer: socket.value.manufacturer,
-            model: socket.value.model,
-            socket: socket.value.socket
-          };
-          if (connectionTo.socket){
-            this.$parent.changeConnection(connectionFrom, connectionTo);
-          }
-        }.bind(this));
-        
-      },
-      deep: true
-    } 
-  },
+  props: ['metadata', 'effectIndex'],
   computed: {
     socketsStyle: function(){
       let paddingTop = this.metadata.socketsPlacement.top ? '15px' : 0;
@@ -95,15 +51,14 @@ export default {
       return `transform: rotate(${this.rotate}deg); padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;
     },
     boxStyle: function(){
-      let width = 'width: ' + this.metadata.dimensions.width + 'px;';
-      let height = 'height: ' + this.metadata.dimensions.height + 'px;';
+      let width = 'width: ' + this.metadata.dimensions.width * (this.$parent.pedalBoard.zoom/100) + 'px;';
+      let height = 'height: ' + this.metadata.dimensions.height * (this.$parent.pedalBoard.zoom/100) + 'px;';
 
       let foregroundColor = 'color: ' + this.metadata.foregroundColor + ';';
       let backgroundColor = 'background-color: ' + this.metadata.backgroundColor + ';';
 
       return `${width} ${height} ${foregroundColor} ${backgroundColor}`;
     }
-    
   },
   methods: {
     findAncestor: function (el, cls) {
@@ -143,5 +98,6 @@ export default {
   color:white;
   padding:15px 20px;
   cursor:move;
+  box-sizing: border-box;
 }
 </style>

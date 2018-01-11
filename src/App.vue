@@ -2,22 +2,16 @@
   <div id="app">
     <main-navigation></main-navigation>
     <main id="mainContent">
-      <div class="main-content">
-      <label><input type="checkbox" v-model="showConnections" />Show connections</label>
-      <div>
-        
 
-      </div>
-      <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
-      <div v-for="(manufacturer, manufacturerIndex) in selectedEffects.manufacturers">
+      <div class="main-content">
+        <label><input type="checkbox" v-model="showConnections" />Show connections</label>
+        <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
         <div is="effect" 
         v-bind:effect-index="effectIndex"
-        v-bind:manufacturer-index="manufacturerIndex" 
-        v-bind:metadata="effect" v-for="(effect, effectIndex) in manufacturer.effects"></div>
+        v-bind:metadata="effect" v-for="(effect, effectIndex) in selectedEffects"></div>
       </div>
-    </div>
-  </main>
-</div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -45,91 +39,71 @@ export default {
         {name: 'Xotic', effects: require("./data/effects/xotic.json")}
         ]
       },
-      selectedEffects: {
-        manufacturers: []
-      },
-      newEffect: {
-        manufacturer: {
-          name: '',
-          effects: []
-        },
-        selectedEffect: {}
-      },
+      selectedEffects: [],
       pedalBoard: {
         dimensions: {width: 930, height: 570},
-        backgroundColor: "#555555"
+        backgroundColor: "#555555",
+        zoom: 100
       },
-      connections: {},
+      connections: [],
       availableConnections: [],
       showConnections: false
     }
   },
-  computed: {
-    disableAddPedalButton: function() {
-      let hasSelectedEffect = Object.keys(this.newEffect.selectedEffect).length !== 0 || this.newEffect.selectedEffect.constructor !== Object;
-      let hasSelectedManufacturer = this.newEffect.manufacturer.name.length;
-      return !hasSelectedManufacturer || !hasSelectedEffect;
-    }
-  },
-  mounted: function (){
-    this.availableConnections = this.getAvailableConnections();
-  },
+
   methods: {
-    addEffect: function(){
-      this.availableEffects.manufacturers.forEach(function(availableManufacturer){
-        if (availableManufacturer.name == this.newEffect.manufacturer.name){
-          let hasSelectedEffectsFromManufaturer = false;
-          
-          if (this.selectedEffects.manufacturers.length){
-            this.selectedEffects.manufacturers.forEach(function(selectedManufacturer, index){
-              if (selectedManufacturer.name == this.newEffect.manufacturer.name){
-                this.selectedEffects.manufacturers[index].effects.push(this.newEffect.selectedEffect);
-                hasSelectedEffectsFromManufaturer = true;
-              }
-            }.bind(this));
+    changeConnection: function(connectionFrom, connectionTo){
+      let hasAllreadyConnectionFrom = false;
+      let hasAllreadyConnectionTo = false;
+      let hasNewConnectionTo = connectionTo.length;
+      let connections = this.connections;
+
+      connections.forEach(function (connection, connectionIndex){
+        // Remove previous mirror connection
+        if (connection.connectionTo == connectionFrom){
+          connections.splice(connectionIndex, 1);
+          this.connections.splice(connectionIndex, 1);
+        }
+      }.bind(this));
+
+
+      connections.forEach(function (connection, connectionIndex){
+        if (!hasNewConnectionTo){
+          // Remove connection
+          if (connection.connectionFrom == connectionFrom){
+            this.connections.splice(connectionIndex, 1);
+            return;
+          }
+        }else{
+          // Update connection
+          if (connection.connectionFrom == connectionFrom){
+            this.connections[connectionIndex].connectionTo = connectionTo;
+            hasAllreadyConnectionFrom = true;
           }
 
-          if (!hasSelectedEffectsFromManufaturer){
-            this.selectedEffects.manufacturers.push({
-              name: this.newEffect.manufacturer.name,
-              effects: [this.newEffect.selectedEffect]
-            });
+          // Update mirror connection
+          if (connection.connectionFrom == connectionTo){
+            this.connections[connectionIndex].connectionTo = connectionFrom
+            hasAllreadyConnectionTo = true;
           }
         }
       }.bind(this));
+
+      if (!hasAllreadyConnectionFrom && hasNewConnectionTo){
+        // New Connection
+        this.connections.push({
+          connectionFrom: connectionFrom,
+          connectionTo: connectionTo
+        });
+      }
+      if (!hasAllreadyConnectionTo && hasNewConnectionTo){
+        // New mirror connection
+        this.connections.push({
+          connectionFrom: connectionTo,
+          connectionTo: connectionFrom
+        });
+      }
     },
-    getAvailableConnections: function () {
-      let availableConnections = [];
-      this.selectedEffects.manufacturers.forEach(function(manufacturer, manufacturerIndex){
-        manufacturer.effects.forEach(function (effect, effectIndex){
-          let sockets = [];
-          effect.sockets.forEach(function(socket, socketIndex){
-            sockets.push({
-              name: socket.name,
-              binding: {
-                manufacturerIndex: manufacturerIndex,
-                effectIndex: effectIndex,
-                socketIndex: socketIndex
-              }
-            });
-          });
-          availableConnections.push({
-            manufacturer: effect.manufacturer,
-            model: effect.model,
-            sockets: sockets
-          })
-        })
-      });
-      return availableConnections;
-    },
-    getIdFromConnectionBinding: function(binding){
-      return `${binding.manufacturerIndex}-${binding.effectIndex}-${binding.socketIndex}`;
-    },
-    changeConnection: function (connectionFrom, connectionTo){
-      let connectionFromBinding = connectionFrom.socket.binding;
-      let connectionToBinding = connectionTo.socket.binding;
-      this.connections[this.getIdFromConnectionBinding(connectionFromBinding)] = this.getIdFromConnectionBinding(connectionToBinding);
-    }
   }
 }
 </script>
@@ -142,4 +116,5 @@ export default {
 body{
   font-family: Verdana, Arial, sans-serif;
 }
+
 </style>
