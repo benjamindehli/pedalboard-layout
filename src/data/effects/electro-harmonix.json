@@ -8,6 +8,13 @@
 		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
 		"switches": [
 			{
+				"name": "Power",
+				"options": [
+					"On",
+					"Off"
+				]
+			},
+			{
 				"name": "Chorus-Vibrato",
 				"options": [
 					"chorus",
@@ -71,6 +78,60 @@
 			},
 			{
 				"name": "Low",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	},
+	{
+		"manufacturer": "Electro-Harmonix",
+		"model": "Small Stone (Classic Chassis)", 
+		"backgroundColor": "#111111",
+		"foregroundColor": "#f4f4f4",
+		"dimensions": {"width": 87, "depth": 138},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Color",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Rate",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	},
+	{
+		"manufacturer": "Electro-Harmonix",
+		"model": "Small Stone (Nano Chassis)", 
+		"backgroundColor": "#cccbc8",
+		"foregroundColor": "#111111",
+		"dimensions": {"width": 65, "depth": 110},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Color",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Rate",
 				"value": "0"
 			}
 		],

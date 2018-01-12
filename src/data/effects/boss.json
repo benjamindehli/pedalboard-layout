@@ -8,6 +8,13 @@
 		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
 		"switches": [
 			{
+				"name": "Power",
+				"options": [
+					"On",
+					"Off"
+				]
+			},
+			{
 				"name": "Input",
 				"options": [
 					"High",

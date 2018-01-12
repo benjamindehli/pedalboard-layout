@@ -1,0 +1,88 @@
+[
+	{
+		"manufacturer": "VanAmps",
+		"model": "Sole-Mate.", 
+		"backgroundColor": "#222222",
+		"foregroundColor": "#eeeeee",
+		"dimensions": {"width": 254, "depth": 152.4},
+		"socketsPlacement": {"back": true, "right": false, "front": true, "left": false},
+		"switches": [
+			{
+				"name": "Aux Switch",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Output Level",
+				"value": "0"
+			},
+			{
+				"name": "Dwell",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"},
+			{"name": "Aux Jack"}
+		]
+	},
+	{
+		"manufacturer": "VanAmps",
+		"model": "Sole-Mate Jr.", 
+		"backgroundColor": "#222222",
+		"foregroundColor": "#eeeeee",
+		"dimensions": {"width": 177.8, "depth": 88.9},
+		"socketsPlacement": {"back": true, "right": true, "front": true, "left": false},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Output Level",
+				"value": "0"
+			},
+			{
+				"name": "Dwell",
+				"value": "0"
+			},
+			{
+				"name": "Symmetry",
+				"value": "0"
+			},
+			{
+				"name": "Bias",
+				"value": "0"
+			},
+			{
+				"name": "Output",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"},
+			{"name": "Reverb Send"},
+			{"name": "Reverb Return"}
+		]
+	},
+	{
+		"manufacturer": "VanAmps",
+		"model": "Sole-Mate Jr. Reverb Tank", 
+		"backgroundColor": "#222222",
+		"foregroundColor": "#eeeeee",
+		"dimensions": {"width": 234.95, "depth": 85.725},
+		"socketsPlacement": {"back": false, "right": false, "front": true, "left": false},
+		"switches": [
+		],
+		"potentiometers": [
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	}
+]

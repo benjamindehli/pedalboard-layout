@@ -1,0 +1,74 @@
+[
+	{
+		"manufacturer": "Fender",
+		"model": "Blender", 
+		"backgroundColor": "#d8d8d8",
+		"foregroundColor": "#191919",
+		"dimensions": {"width": 184, "depth": 115},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Tone boost",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Sustain",
+				"value": "0"
+			},
+			{
+				"name": "Tone",
+				"value": "0"
+			},
+			{
+				"name": "Blend",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Guitar"},
+			{"name": "Amp"}
+		]
+	},
+	{
+		"manufacturer": "Fender",
+		"model": "Blender (3 knob)", 
+		"backgroundColor": "#d8d8d8",
+		"foregroundColor": "#191919",
+		"dimensions": {"width": 184, "depth": 115},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Selector",
+				"options": [
+					"Pre/Amp",
+					"Fuzz 1",
+					"Fuzz 2",
+					"Fuzz 3"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Sustain",
+				"value": "0"
+			},
+			{
+				"name": "Gain",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Instrument"},
+			{"name": "Output"}
+		]
+	}
+]

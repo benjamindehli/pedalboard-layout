@@ -1,0 +1,26 @@
+[
+	{
+		"manufacturer": "Dallas Arbiter",
+		"model": "Fuzz Face", 
+		"backgroundColor": "#be0015",
+		"foregroundColor": "#fafafa",
+		"dimensions": {"width": 180, "depth": 180},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Fuzz",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "In"},
+			{"name": "Out"}
+		]
+	}
+]

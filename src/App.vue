@@ -31,11 +31,14 @@ export default {
       availableEffects: {
         manufacturers: [
         {name: 'Boss', effects: require("./data/effects/boss.json")},
+        {name: 'Dallas Arbiter', effects: require("./data/effects/dallas-arbiter.json")},
         {name: 'Diamond', effects: require("./data/effects/diamond.json")},
         {name: 'Digitech', effects: require("./data/effects/digitech.json")},
         {name: 'Electro-Harmonix', effects: require("./data/effects/electro-harmonix.json")},
+        {name: 'Fender', effects: require("./data/effects/fender.json")},
         {name: 'Origin Effects', effects: require("./data/effects/origin-effects.json")},
         {name: 'Roger Mayer', effects: require("./data/effects/roger-mayer.json")},
+        {name: 'VanAmps', effects: require("./data/effects/van-amps.json")},
         {name: 'Xotic', effects: require("./data/effects/xotic.json")}
         ]
       },
