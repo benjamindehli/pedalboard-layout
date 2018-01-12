@@ -4,7 +4,7 @@
 		"model": "CE-1", 
 		"backgroundColor": "#808275",
 		"foregroundColor": "#f77f38",
-		"dimensions": {"width": 260, "height": 180},
+		"dimensions": {"width": 260, "depth": 180},
 		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
 		"switches": [
 			{
@@ -47,7 +47,7 @@
 		"model": "DM-2", 
 		"backgroundColor": "#8e0432",
 		"foregroundColor": "#040202",
-		"dimensions": {"width": 73, "height": 129},
+		"dimensions": {"width": 73, "depth": 129},
 		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
 		"switches": [
 		],
@@ -75,7 +75,7 @@
 		"model": "DM-2w", 
 		"backgroundColor": "#8e0432",
 		"foregroundColor": "#040202",
-		"dimensions": {"width": 73, "height": 129},
+		"dimensions": {"width": 73, "depth": 129},
 		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
 		"switches": [
 			{
@@ -112,7 +112,7 @@
 		"model": "NS-2", 
 		"backgroundColor": "#c4c6be",
 		"foregroundColor": "#393847",
-		"dimensions": {"width": 73, "height": 129},
+		"dimensions": {"width": 73, "depth": 129},
 		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
 		"switches": [
 			{

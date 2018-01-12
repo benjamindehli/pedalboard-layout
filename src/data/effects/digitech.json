@@ -4,7 +4,7 @@
 		"model": "Whammy (5th Gen)", 
 		"backgroundColor": "#e31928",
 		"foregroundColor": "#2f2f2f",
-		"dimensions": {"width": 165.1, "height": 196.85},
+		"dimensions": {"width": 165.1, "depth": 196.85},
 		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
 		"switches": [
 			{

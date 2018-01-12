@@ -4,7 +4,7 @@
 		"model": "Memory Lane 2", 
 		"backgroundColor": "#d6dde0",
 		"foregroundColor": "#1500c6",
-		"dimensions": {"width": 182.88, "height": 116.84},
+		"dimensions": {"width": 182.88, "depth": 116.84},
 		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": true},
 		"switches": [
 			{

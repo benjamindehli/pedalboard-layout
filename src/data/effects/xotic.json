@@ -4,7 +4,7 @@
 		"model": "EP-Booster", 
 		"backgroundColor": "#0a0d17",
 		"foregroundColor": "#f2f1f7",
-		"dimensions": {"width": 38, "height": 89},
+		"dimensions": {"width": 38, "depth": 89},
 		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
 		"potentiometers": [
 			{

@@ -4,7 +4,7 @@
 		"model": "Voodoo-Vibe+", 
 		"backgroundColor": "#1f1f28",
 		"foregroundColor": "#faf9fe",
-		"dimensions": {"width": 220, "height": 150},
+		"dimensions": {"width": 220, "depth": 150},
 		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
 		"switches": [
 			{

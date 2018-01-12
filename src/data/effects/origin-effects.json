@@ -4,7 +4,7 @@
 		"model": "Cali76 Standard", 
 		"backgroundColor": "#b9b9b9",
 		"foregroundColor": "#3b3c46",
-		"dimensions": {"width": 205, "height": 161},
+		"dimensions": {"width": 205, "depth": 161},
 		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
 		"potentiometers": [
 			{

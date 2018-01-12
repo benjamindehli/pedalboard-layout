@@ -41,7 +41,7 @@ export default {
       },
       selectedEffects: [],
       pedalBoard: {
-        dimensions: {width: 930, height: 570},
+        dimensions: {width: 930, depth: 570},
         backgroundColor: "#555555",
         zoom: 100
       },

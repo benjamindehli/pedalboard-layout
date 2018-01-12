@@ -52,7 +52,7 @@ export default {
     },
     boxStyle: function(){
       let width = 'width: ' + this.metadata.dimensions.width * (this.$parent.pedalBoard.zoom/100) + 'px;';
-      let height = 'height: ' + this.metadata.dimensions.height * (this.$parent.pedalBoard.zoom/100) + 'px;';
+      let height = 'height: ' + this.metadata.dimensions.depth * (this.$parent.pedalBoard.zoom/100) + 'px;';
 
       let foregroundColor = 'color: ' + this.metadata.foregroundColor + ';';
       let backgroundColor = 'background-color: ' + this.metadata.backgroundColor + ';';

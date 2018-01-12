@@ -17,7 +17,7 @@ export default {
   computed: {
     pedalBoardStyle: function(){
       let width = 'width: ' + this.metadata.dimensions.width * (this.$parent.pedalBoard.zoom/100) + 'px;';
-      let height = 'height: ' + this.metadata.dimensions.height * (this.$parent.pedalBoard.zoom/100) + 'px;';
+      let height = 'height: ' + this.metadata.dimensions.depth * (this.$parent.pedalBoard.zoom/100) + 'px;';
       let backgroundColor = 'backgroundColor:' + this.metadata.backgroundColor + ';';
       return `${width} ${height} ${backgroundColor}`;
     }
