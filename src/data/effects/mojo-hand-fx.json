@@ -1,0 +1,66 @@
+[
+	{
+		"manufacturer": "Mojo Hand FX",
+		"model": "Iron Bell", 
+		"backgroundColor": "#de406f",
+		"foregroundColor": "#1b1b1b",
+		"dimensions": {"width": 115, "depth": 184},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Sustain",
+				"value": "0"
+			},
+			{
+				"name": "Tone",
+				"value": "0"
+			},
+			{
+				"name": "Blend",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	},
+	{
+		"manufacturer": "Mojo Hand FX",
+		"model": "Iron Bell (#001 Limited Edition)", 
+		"backgroundColor": "#c19a41",
+		"foregroundColor": "#f6e9c3",
+		"dimensions": {"width": 115, "depth": 184},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
+		"switches": [
+		],
+		"potentiometers": [
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Sustain",
+				"value": "0"
+			},
+			{
+				"name": "Tone",
+				"value": "0"
+			},
+			{
+				"name": "Blend",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	}
+]
