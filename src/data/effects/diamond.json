@@ -5,7 +5,7 @@
 		"backgroundColor": "#d6dde0",
 		"foregroundColor": "#1500c6",
 		"dimensions": {"width": 182.88, "depth": 116.84},
-		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": true},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": true},
 		"switches": [
 			{
 				"name": "Slapback",

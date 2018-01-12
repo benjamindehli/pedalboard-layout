@@ -5,7 +5,7 @@
 		"backgroundColor": "#808275",
 		"foregroundColor": "#f77f38",
 		"dimensions": {"width": 260, "depth": 180},
-		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
 		"switches": [
 			{
 				"name": "Input",
@@ -48,7 +48,7 @@
 		"backgroundColor": "#8e0432",
 		"foregroundColor": "#040202",
 		"dimensions": {"width": 73, "depth": 129},
-		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
 		"switches": [
 		],
 		"potentiometers": [
@@ -76,7 +76,7 @@
 		"backgroundColor": "#8e0432",
 		"foregroundColor": "#040202",
 		"dimensions": {"width": 73, "depth": 129},
-		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
 		"switches": [
 			{
 				"name": "Echo",
@@ -113,7 +113,7 @@
 		"backgroundColor": "#c4c6be",
 		"foregroundColor": "#393847",
 		"dimensions": {"width": 73, "depth": 129},
-		"socketsPlacement": {"top": false, "right": true, "bottom": false, "left": true},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
 		"switches": [
 			{
 				"name": "Mode",

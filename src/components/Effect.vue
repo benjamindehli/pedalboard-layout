@@ -43,9 +43,9 @@ export default {
   props: ['metadata', 'effectIndex'],
   computed: {
     socketsStyle: function(){
-      let paddingTop = this.metadata.socketsPlacement.top ? '15px' : 0;
+      let paddingTop = this.metadata.socketsPlacement.back ? '15px' : 0;
       let paddingRight = this.metadata.socketsPlacement.right ? '15px' : 0;
-      let paddingBottom = this.metadata.socketsPlacement.bottom ? '15px' : 0;
+      let paddingBottom = this.metadata.socketsPlacement.front ? '15px' : 0;
       let paddingLeft = this.metadata.socketsPlacement.left ? '15px' : 0;
 
       return `transform: rotate(${this.rotate}deg); padding: ${paddingTop} ${paddingRight} ${paddingBottom} ${paddingLeft};`;

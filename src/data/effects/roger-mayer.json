@@ -5,7 +5,7 @@
 		"backgroundColor": "#1f1f28",
 		"foregroundColor": "#faf9fe",
 		"dimensions": {"width": 220, "depth": 150},
-		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
 		"switches": [
 			{
 				"name": "Function",

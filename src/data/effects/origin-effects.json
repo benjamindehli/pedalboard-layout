@@ -5,7 +5,7 @@
 		"backgroundColor": "#b9b9b9",
 		"foregroundColor": "#3b3c46",
 		"dimensions": {"width": 205, "depth": 161},
-		"socketsPlacement": {"top": true, "right": false, "bottom": false, "left": false},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
 		"potentiometers": [
 			{
 				"name": "Ratio",
