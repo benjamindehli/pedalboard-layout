@@ -1,4 +1,4 @@
-# pedalboard-test
+# FlowRig
 
 ## Build Setup
 
