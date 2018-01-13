@@ -30,7 +30,7 @@ let header = Header.getModule({
 	theme: 'dark',
 	logo: {
 		image: {
-            src: '',//'src/images/svg/flowchord-logo-white.svg',
+            src: 'src/images/svg/flowrig-logo-white-horizontal.svg',
             alt: 'FlowRig logo'
         },
         url: "#"
