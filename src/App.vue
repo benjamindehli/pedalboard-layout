@@ -55,6 +55,7 @@ export default {
         {name: 'Digitech', effects: require("./data/effects/digitech.json")},
         {name: 'Electro-Harmonix', effects: require("./data/effects/electro-harmonix.json")},
         {name: 'Fender', effects: require("./data/effects/fender.json")},
+        {name: 'Kingsley', effects: require("./data/effects/kingsley.json")},
         {name: 'Mojo Hand FX', effects: require("./data/effects/mojo-hand-fx.json")},
         {name: 'Origin Effects', effects: require("./data/effects/origin-effects.json")},
         {name: 'Roger Mayer', effects: require("./data/effects/roger-mayer.json")},

@@ -16,5 +16,63 @@
 			{"name": "In"},
 			{"name": "Out"}
 		]
+	},
+	{
+		"manufacturer": "Xotic",
+		"model": "SL Drive", 
+		"backgroundColor": "#0a0d17",
+		"foregroundColor": "#f2f1f7",
+		"dimensions": {"width": 38, "depth": 89},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
+		"potentiometers": [
+			{
+				"name": "Drive",
+				"value": "0"
+			},
+			{
+				"name": "Tone",
+				"value": "0"
+			},
+			{
+				"name": "Volume",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "In"},
+			{"name": "Out"}
+		]
+	},
+	{
+		"manufacturer": "Xotic",
+		"model": "SP Compressor", 
+		"backgroundColor": "#0a0d17",
+		"foregroundColor": "#f2f1f7",
+		"dimensions": {"width": 38, "depth": 89},
+		"socketsPlacement": {"back": false, "right": true, "front": false, "left": true},
+		"switches": [
+			{
+				"name": "Aux Switch",
+				"options": [
+					"Hi",
+					"Lo",
+					"Mid"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Blend",
+				"value": "0"
+			},
+			{
+				"name": "Volume",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "In"},
+			{"name": "Out"}
+		]
 	}
 ]

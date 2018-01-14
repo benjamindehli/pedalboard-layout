@@ -1,0 +1,142 @@
+[
+	{
+		"manufacturer": "Kingsley",
+		"model": "Jester (Version A)", 
+		"backgroundColor": "#186cd0",
+		"foregroundColor": "#f6f4cc",
+		"dimensions": {"width": 190.5, "depth": 152.4},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Boost Select",
+				"options": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			{
+				"name": "OD Select",
+				"options": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			{
+				"name": "Boost On/Off",
+				"options": [
+					"On",
+					"Off"
+				]
+			},
+			{
+				"name": "OD On/Off",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Boost",
+				"value": "0"
+			},
+			{
+				"name": "Bass",
+				"value": "0"
+			},
+			{
+				"name": "Middle",
+				"value": "0"
+			},
+			{
+				"name": "Treble",
+				"value": "0"
+			},
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Gain",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	},
+	{
+		"manufacturer": "Kingsley",
+		"model": "Jester (Version B)", 
+		"backgroundColor": "#051f80",
+		"foregroundColor": "#d2d6c6",
+		"dimensions": {"width": 133.35, "depth": 127},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Boost Select",
+				"options": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			{
+				"name": "OD Select",
+				"options": [
+					"1",
+					"2",
+					"3"
+				]
+			},
+			{
+				"name": "Boost On/Off",
+				"options": [
+					"On",
+					"Off"
+				]
+			},
+			{
+				"name": "OD On/Off",
+				"options": [
+					"On",
+					"Off"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Boost",
+				"value": "0"
+			},
+			{
+				"name": "Bass",
+				"value": "0"
+			},
+			{
+				"name": "Middle",
+				"value": "0"
+			},
+			{
+				"name": "Treble",
+				"value": "0"
+			},
+			{
+				"name": "Volume",
+				"value": "0"
+			},
+			{
+				"name": "Gain",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "Input"},
+			{"name": "Output"}
+		]
+	}
+]
