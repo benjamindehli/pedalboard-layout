@@ -4,6 +4,23 @@
     <main id="mainContent">
 
       <div class="main-content">
+        <div>
+          <label>
+            Show signal chain from effect:
+            <select v-model="selectedFirstEffect">
+              <option v-bind:value="{effectIndex: effectIndex, effect: selectedEffect}" v-for="(selectedEffect, effectIndex) in selectedEffects">
+                {{ selectedEffect.manufacturer }} {{ selectedEffect.model }}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div v-if="Object.keys(effectChainFromFirstEffect).length">
+          <div is="effect-chain-item" v-bind:effect-chain-item="effectChainFromFirstEffect" v-if="effectChainFromFirstEffect.connectedTo.length">
+          </div>
+        </div>
+
+
         <label><input type="checkbox" v-model="showConnections" />Show connections</label>
         <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
         <div is="effect" 
@@ -19,12 +36,14 @@ import * as quark from 'quark-gui';
 import MainNavigation from './components/MainNavigation.vue';
 import PedalBoard from "./components/PedalBoard.vue";
 import Effect from "./components/Effect.vue";
+import EffectChainItem from "./components/EffectChainItem.vue";
 export default {
   name: 'app',
   components: {
     MainNavigation,
     PedalBoard,
-    Effect
+    Effect,
+    EffectChainItem
   },
   data () {
     return {
@@ -44,6 +63,8 @@ export default {
         ]
       },
       selectedEffects: [],
+      selectedFirstEffect: {},
+      effectsInSelectedChain: [],
       pedalBoard: {
         dimensions: {width: 930, depth: 570},
         backgroundColor: "#555555",
@@ -54,15 +75,99 @@ export default {
       showConnections: false
     }
   },
+  computed: {
+    effectChainFromFirstEffect: function (){
 
+      let effectChainFromFirstEffect = {};
+      this.effectsInSelectedChain = [];
+
+      if (Object.keys(this.selectedFirstEffect).length !== 0){
+        effectChainFromFirstEffect.manufacturer = this.selectedFirstEffect.effect.manufacturer;
+        effectChainFromFirstEffect.model = this.selectedFirstEffect.effect.model;
+        effectChainFromFirstEffect.connectedTo = [];
+        effectChainFromFirstEffect.connectedFrom = {};
+        
+        let effectIndex = this.selectedFirstEffect.effectIndex;
+
+        this.selectedFirstEffect.effect.sockets.forEach(function (socket, socketIndex){
+          let socketId = effectIndex + "-" + socketIndex;
+          let effectsConnectedToEffect = this.getEffectsConnectedToEffect(socketId);
+          if (effectsConnectedToEffect.length){
+            effectChainFromFirstEffect.connectedTo = effectsConnectedToEffect;
+            effectChainFromFirstEffect.connectedFrom = socket;
+          }
+        }.bind(this));
+      }
+
+      return effectChainFromFirstEffect;
+    }
+  },
   methods: {
-    changeConnection: function(connectionFrom, connectionTo){
-      let hasAllreadyConnectionFrom = false;
-      let hasAllreadyConnectionTo = false;
-      let hasNewConnectionTo = connectionTo.length;
-      let connections = this.connections;
+    getConnectionToValueBySocketId: function (socketId) {
+      let connectionToValue = null;
+      this.connections.forEach(function (connection){
+        if (connection.connectionFrom == socketId){
+          connectionToValue = connection.connectionTo;
+          return;
+        }
+      });
+      return connectionToValue;
+    },
+    getEffectsConnectedToEffect: function (socketId){
+     let allEffectsConnectedToEffect = [];
+     if (!this.effectsInSelectedChain.includes(socketId)){
 
-      connections.forEach(function (connection, connectionIndex){
+        // Get socket connection
+        let connectedSocketId = this.getConnectionToValueBySocketId(socketId);
+
+       // If socket has connection
+       if (connectedSocketId !== null){
+        this.effectsInSelectedChain.push(socketId);
+
+        let connectedIndexes = connectedSocketId.split("-");
+        let connectedEffectIndex = connectedIndexes[0];
+        let connectedEffect = this.getSelectedEffectBySocketId(connectedSocketId);
+
+        let effectConnectedToEffect = {
+          manufacturer: connectedEffect.manufacturer,
+          model: connectedEffect.model,
+          connectedTo: [],
+          connectedFrom: {}
+        }
+
+        connectedEffect.sockets.forEach(function (socket, socketIndex){
+          let connectedSocketId = connectedEffectIndex + "-" + socketIndex;
+
+          let connectedTo = this.getEffectsConnectedToEffect(connectedSocketId);
+          if (connectedTo.length){
+
+            effectConnectedToEffect.connectedTo = connectedTo;
+            effectConnectedToEffect.connectedFrom = socket;
+          }
+
+        }.bind(this));
+
+        allEffectsConnectedToEffect.push(effectConnectedToEffect);
+      }
+
+    }
+
+    return allEffectsConnectedToEffect;
+  },
+  getSelectedEffectBySocketId: function (socketId){
+    let indexes = socketId.split("-");
+    let effectIndex = indexes[0];
+    let selectedEffect = this.selectedEffects[effectIndex];
+    return selectedEffect;
+  },
+
+  changeConnection: function(connectionFrom, connectionTo){
+    let hasAllreadyConnectionFrom = false;
+    let hasAllreadyConnectionTo = false;
+    let hasNewConnectionTo = connectionTo.length;
+    let connections = this.connections;
+
+    connections.forEach(function (connection, connectionIndex){
         // Remove previous mirror connection
         if (connection.connectionTo == connectionFrom){
           connections.splice(connectionIndex, 1);
@@ -71,8 +176,8 @@ export default {
       }.bind(this));
 
 
-      connections.forEach(function (connection, connectionIndex){
-        if (!hasNewConnectionTo){
+    connections.forEach(function (connection, connectionIndex){
+      if (!hasNewConnectionTo){
           // Remove connection
           if (connection.connectionFrom == connectionFrom){
             this.connections.splice(connectionIndex, 1);
@@ -93,7 +198,7 @@ export default {
         }
       }.bind(this));
 
-      if (!hasAllreadyConnectionFrom && hasNewConnectionTo){
+    if (!hasAllreadyConnectionFrom && hasNewConnectionTo){
         // New Connection
         this.connections.push({
           connectionFrom: connectionFrom,
