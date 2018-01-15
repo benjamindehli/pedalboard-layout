@@ -16,7 +16,7 @@
         </div>
 
         <div v-if="Object.keys(effectChainFromFirstEffect).length">
-          <div is="effect-chain-item" v-bind:effect-chain-item="effectChainFromFirstEffect" v-if="effectChainFromFirstEffect.connectedTo.length">
+          <div is="effect-chain-item" v-bind:effect-chain-item="effectChainFromFirstEffect" v-bind:socket="false" v-if="effectChainFromFirstEffect.connectionTo.length">
           </div>
         </div>
 
@@ -78,28 +78,11 @@ export default {
   },
   computed: {
     effectChainFromFirstEffect: function (){
-
       let effectChainFromFirstEffect = {};
       this.effectsInSelectedChain = [];
-
       if (Object.keys(this.selectedFirstEffect).length !== 0){
-        effectChainFromFirstEffect.manufacturer = this.selectedFirstEffect.effect.manufacturer;
-        effectChainFromFirstEffect.model = this.selectedFirstEffect.effect.model;
-        effectChainFromFirstEffect.connectedTo = [];
-        effectChainFromFirstEffect.connectedFrom = {};
-        
-        let effectIndex = this.selectedFirstEffect.effectIndex;
-
-        this.selectedFirstEffect.effect.sockets.forEach(function (socket, socketIndex){
-          let socketId = effectIndex + "-" + socketIndex;
-          let effectsConnectedToEffect = this.getEffectsConnectedToEffect(socketId);
-          if (effectsConnectedToEffect.length){
-            effectChainFromFirstEffect.connectedTo = effectsConnectedToEffect;
-            effectChainFromFirstEffect.connectedFrom = socket;
-          }
-        }.bind(this));
+        effectChainFromFirstEffect = this.getEffectsConnectedToEffect(this.selectedFirstEffect.effectIndex);
       }
-
       return effectChainFromFirstEffect;
     }
   },
@@ -114,61 +97,68 @@ export default {
       });
       return connectionToValue;
     },
-    getEffectsConnectedToEffect: function (socketId){
-     let allEffectsConnectedToEffect = [];
-     if (!this.effectsInSelectedChain.includes(socketId)){
-
-        // Get socket connection
-        let connectedSocketId = this.getConnectionToValueBySocketId(socketId);
-
-       // If socket has connection
-       if (connectedSocketId !== null){
-        this.effectsInSelectedChain.push(socketId);
-
-        let connectedIndexes = connectedSocketId.split("-");
-        let connectedEffectIndex = connectedIndexes[0];
-        let connectedEffect = this.getSelectedEffectBySocketId(connectedSocketId);
-
-        let effectConnectedToEffect = {
-          manufacturer: connectedEffect.manufacturer,
-          model: connectedEffect.model,
-          connectedTo: [],
-          connectedFrom: {}
-        }
-
-        connectedEffect.sockets.forEach(function (socket, socketIndex){
-          let connectedSocketId = connectedEffectIndex + "-" + socketIndex;
-
-          let connectedTo = this.getEffectsConnectedToEffect(connectedSocketId);
-          if (connectedTo.length){
-
-            effectConnectedToEffect.connectedTo = connectedTo;
-            effectConnectedToEffect.connectedFrom = socket;
-          }
-
-        }.bind(this));
-
-        allEffectsConnectedToEffect.push(effectConnectedToEffect);
+    getEffectConnectedToSocket: function (socketFromId, socketIdsInChain){
+      socketIdsInChain = socketIdsInChain !== undefined ? socketIdsInChain : [];
+      socketIdsInChain.push(socketFromId);
+      // Get socket connection
+      let effectConnectedToSocket = null;
+      let connectedSocketId = this.getConnectionToValueBySocketId(socketFromId);
+      if (connectedSocketId !== null && !socketIdsInChain.includes(connectedSocketId)){
+        let connectedEffectIndex = this.getSelectedEffectIndexBySocketId(connectedSocketId);
+        let socketFrom = this.getSelectedSocketBySocketId(socketFromId);
+        effectConnectedToSocket = this.getEffectsConnectedToEffect(connectedEffectIndex, socketIdsInChain, socketFrom);
       }
+      return effectConnectedToSocket;
+    },
+    getEffectsConnectedToEffect: function (effectFromIndex, socketIdsInChain, socketFrom){
+      socketIdsInChain = socketIdsInChain !== undefined ? socketIdsInChain : [];
+      socketFrom = socketFrom !== undefined ? socketFrom : null;
 
-    }
+      let effectFrom = this.selectedEffects[effectFromIndex];
+      
+      let effectsConnectedToEffect = {
+        manufacturer: effectFrom.manufacturer,
+        model: effectFrom.model,
+        connectionTo: [],
+        connectionFrom: socketFrom
+      }
+      effectFrom.sockets.forEach(function (socket, socketIndex){
+        let socketFromId = effectFromIndex + '-' + socketIndex;
+        if (!socketIdsInChain.includes(socketFromId)){
+          let connectedEffect = this.getEffectConnectedToSocket(socketFromId, socketIdsInChain);
+          if (connectedEffect !== null){
+            effectsConnectedToEffect.connectionTo.push({socket: socket, connectedEffect: connectedEffect});
+          }
+        }
+      }.bind(this));
+      return effectsConnectedToEffect;
+    },
+    getSelectedEffectBySocketId: function (socketId){
+      let indexes = socketId.split("-");
+      let effectIndex = indexes[0];
+      let selectedEffect = this.selectedEffects[effectIndex];
+      return selectedEffect;
+    },
+    getSelectedEffectIndexBySocketId: function (socketId){
+      let indexes = socketId.split("-");
+      let selectedEffectIndex = indexes[0];
+      return selectedEffectIndex;
+    },
+    getSelectedSocketBySocketId: function (socketId){
+      let indexes = socketId.split("-");
+      let effectIndex = indexes[0];
+      let socketIndex = indexes[0];
+      let selectedSocket = this.selectedEffects[effectIndex].sockets[effectIndex];
+      return selectedSocket;
+    },
 
-    return allEffectsConnectedToEffect;
-  },
-  getSelectedEffectBySocketId: function (socketId){
-    let indexes = socketId.split("-");
-    let effectIndex = indexes[0];
-    let selectedEffect = this.selectedEffects[effectIndex];
-    return selectedEffect;
-  },
+    changeConnection: function(connectionFrom, connectionTo){
+      let hasAllreadyConnectionFrom = false;
+      let hasAllreadyConnectionTo = false;
+      let hasNewConnectionTo = connectionTo.length;
+      let connections = this.connections;
 
-  changeConnection: function(connectionFrom, connectionTo){
-    let hasAllreadyConnectionFrom = false;
-    let hasAllreadyConnectionTo = false;
-    let hasNewConnectionTo = connectionTo.length;
-    let connections = this.connections;
-
-    connections.forEach(function (connection, connectionIndex){
+      connections.forEach(function (connection, connectionIndex){
         // Remove previous mirror connection
         if (connection.connectionTo == connectionFrom){
           connections.splice(connectionIndex, 1);
@@ -177,8 +167,8 @@ export default {
       }.bind(this));
 
 
-    connections.forEach(function (connection, connectionIndex){
-      if (!hasNewConnectionTo){
+      connections.forEach(function (connection, connectionIndex){
+        if (!hasNewConnectionTo){
           // Remove connection
           if (connection.connectionFrom == connectionFrom){
             this.connections.splice(connectionIndex, 1);
@@ -199,7 +189,7 @@ export default {
         }
       }.bind(this));
 
-    if (!hasAllreadyConnectionFrom && hasNewConnectionTo){
+      if (!hasAllreadyConnectionFrom && hasNewConnectionTo){
         // New Connection
         this.connections.push({
           connectionFrom: connectionFrom,
