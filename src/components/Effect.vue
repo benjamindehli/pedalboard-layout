@@ -1,6 +1,6 @@
 <template>
   <div 
-  v-on:mouseup="destroy" 
+  v-on:mouseup="destroy($event)" 
   v-on:mousemove="move_elem($event)" 
   v-on:mousedown="dragInit($event)"
   v-bind:style="socketsStyle"
@@ -8,9 +8,9 @@
   <div 
   v-bind:style="boxStyle" 
   class="box">
-  <div>
-    <span>{{metadata.manufacturer}}</span>
-    <span>{{metadata.model}}</span>
+  <div class="noselect">
+    <span class="manufacturer-name">{{metadata.manufacturer}}</span>
+    <span class="model-name">{{metadata.model}}</span>
   </div>
   <div v-show="$parent.showConnections">
     <div v-for="(socket, socketIndex) in metadata.sockets">
@@ -68,11 +68,15 @@ export default {
     dragInit: function (event) {
       if (event.target.classList.contains('sockets')) return;
       let element = this.findAncestor(event.target, 'sockets');
+      element.style.zIndex = 5;
+
       this.selected = element;
       this.x_elem = this.x_pos - this.selected.offsetLeft;
       this.y_elem = this.y_pos - this.selected.offsetTop;
     },
-    destroy: function() {
+    destroy: function(event) {
+      let element = this.findAncestor(event.target, 'sockets');
+      element.style.zIndex = 1;
       this.selected = null;
     },
     move_elem: function(e) {
