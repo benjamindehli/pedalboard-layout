@@ -1,0 +1,61 @@
+[
+	{
+		"manufacturer": "Neo Instruments",
+		"model": "Ventilator", 
+		"backgroundColor": "#42403c",
+		"foregroundColor": "#e7ebe9",
+		"dimensions": {"width": 192, "depth": 153},
+		"socketsPlacement": {"back": true, "right": false, "front": false, "left": false},
+		"switches": [
+			{
+				"name": "Slow/Fast",
+				"options": [
+					"Slow",
+					"Fast"
+				]
+			},
+			{
+				"name": "Speaker Simulation",
+				"options": [
+					"Key",
+					"Git"
+				]
+			},
+			{
+				"name": "Gain",
+				"options": [
+					"Lo",
+					"Hi"
+				]
+			}
+		],
+		"potentiometers": [
+			{
+				"name": "Speed",
+				"value": "0"
+			},
+			{
+				"name": "Acceleration",
+				"value": "0"
+			},
+			{
+				"name": "Balance",
+				"value": "0"
+			},
+			{
+				"name": "Drive",
+				"value": "0"
+			},
+			{
+				"name": "Distance",
+				"value": "0"
+			}
+		],
+		"sockets": [
+			{"name": "In"},
+			{"name": "Out L"},
+			{"name": "Out R / Mono"},
+			{"name": "Remote"}
+		]
+	}
+]

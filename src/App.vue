@@ -57,6 +57,7 @@ export default {
         {name: 'Fender', effects: require("./data/effects/fender.json")},
         {name: 'Kingsley', effects: require("./data/effects/kingsley.json")},
         {name: 'Mojo Hand FX', effects: require("./data/effects/mojo-hand-fx.json")},
+        {name: 'Neo Instruments', effects: require("./data/effects/neo-instruments.json")},
         {name: 'Origin Effects', effects: require("./data/effects/origin-effects.json")},
         {name: 'Roger Mayer', effects: require("./data/effects/roger-mayer.json")},
         {name: 'VanAmps', effects: require("./data/effects/van-amps.json")},
