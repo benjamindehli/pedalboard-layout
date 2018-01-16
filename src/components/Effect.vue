@@ -88,16 +88,33 @@ export default {
 </script>
 
 <style lang="scss">
+@import "./src/style/abstracts/all";
 .sockets{
   position:absolute;
   background-color: rgba(100,110,200,.3);
 }
 .box {
   background-color:#678;
-  border: 1px solid #567;
   color:white;
-  padding:15px 20px;
+  border: 1px solid rgba(0, 0, 0, .07);
+  padding:6px;
   cursor:move;
   box-sizing: border-box;
+    @include transition(box-shadow .4s cubic-bezier(.25, .8, .25, 1), filter .4s cubic-bezier(.25, .8, .25, 1));
+    
+  &:active{
+   @include raised(3);
+  }
+  &:hover{
+    filter: brightness(110%);
+  }
+  .manufacturer-name{
+    font-size: 12px;
+    display: block;
+  }
+  .model-name{
+    font-size: 14px;
+    display: block;
+  }
 }
 </style>
