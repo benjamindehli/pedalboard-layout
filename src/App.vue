@@ -1,12 +1,13 @@
 <template>
-  <div id="app">
+
+  <div id="app" v-on:mousemove="move_elem($event)" v-on:mouseup="destroy($event)">
     <main-navigation></main-navigation>
     <main id="mainContent">
       <div class="main-content">
         <div is="effect-chain"></div>
         <label><input type="checkbox" v-model="showConnections" />Show connections</label>
         <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
-        <div is="effect" 
+        <div is="effect"
         v-bind:effect-index="effectIndex"
         v-bind:metadata="effect" v-for="(effect, effectIndex) in selectedEffects"></div>
       </div>
@@ -47,6 +48,11 @@ export default {
         {name: 'Xotic', effects: require("./data/effects/xotic.json")}
         ]
       },
+      selected: null,
+      selectedPosition: {
+        x_elem: 0,
+        y_elem: 0
+      },
       selectedEffects: [],
       pedalBoard: {
         dimensions: {width: 930, depth: 570},
@@ -55,23 +61,43 @@ export default {
       },
       connections: [],
       availableConnections: [],
-      showConnections: false
+      showConnections: false,
+
     }
   },
   methods: {
-    getConnectionToValueBySocketId: function (socketId) {
-      let connectionToValue = null;
-      this.connections.forEach(function (connection){
-        if (connection.connectionFrom == socketId){
-          connectionToValue = connection.connectionTo;
-          return;
-        }
-      });
-      return connectionToValue;
-    },
-    getEffectConnectedToSocket: function (socketFromId, socketIdsInChain){
-      socketIdsInChain = socketIdsInChain !== undefined ? socketIdsInChain : [];
-      socketIdsInChain.push(socketFromId);
+    move_elem: function(event) {
+      let x_pos = document.all ? window.event.clientX : event.pageX;
+      let y_pos = document.all ? window.event.clientY : event.pageY;
+      if (this.selected !== null) {
+       this.selected.style.left = (x_pos - this.selectedPosition.x_elem) + 'px';
+       this.selected.style.top = (y_pos - this.selectedPosition.y_elem) + 'px';
+     }
+   },
+   destroy: function(event) {
+    let element = this.findAncestor(event.target, 'sockets');
+    if (element !== null){
+     element.style.zIndex = 1;
+     this.selected = null;
+   }
+ },
+ findAncestor: function (el, cls) {
+  while ((el = el.parentElement) && !el.classList.contains(cls));
+  return el;
+},
+getConnectionToValueBySocketId: function (socketId) {
+  let connectionToValue = null;
+  this.connections.forEach(function (connection){
+    if (connection.connectionFrom == socketId){
+      connectionToValue = connection.connectionTo;
+      return;
+    }
+  });
+  return connectionToValue;
+},
+getEffectConnectedToSocket: function (socketFromId, socketIdsInChain){
+  socketIdsInChain = socketIdsInChain !== undefined ? socketIdsInChain : [];
+  socketIdsInChain.push(socketFromId);
 
       // Get socket connection
       let effectConnectedToSocket = null;

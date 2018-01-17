@@ -1,7 +1,6 @@
 <template>
   <div 
-  v-on:mouseup="destroy($event)" 
-  v-on:mousemove="move_elem($event)" 
+  
   v-on:mousedown="dragInit($event)"
   v-bind:style="socketsStyle"
   class="sockets">
@@ -31,11 +30,6 @@ export default {
   },
   data () {
     return {
-      selected: null,
-      x_pos: 0,
-      y_pos: 0,
-      x_elem: 0,
-      y_elem: 0,
       rotate: 0,
       sockets: []
     }
@@ -61,32 +55,21 @@ export default {
     }
   },
   methods: {
-    findAncestor: function (el, cls) {
-      while ((el = el.parentElement) && !el.classList.contains(cls));
-      return el;
-    },
+    
     dragInit: function (event) {
       if (event.target.classList.contains('sockets')) return;
-      let element = this.findAncestor(event.target, 'sockets');
+      let element = this.$parent.findAncestor(event.target, 'sockets');
       element.style.zIndex = 5;
 
-      this.selected = element;
-      this.x_elem = this.x_pos - this.selected.offsetLeft;
-      this.y_elem = this.y_pos - this.selected.offsetTop;
+      let x_pos = document.all ? window.event.clientX : event.pageX;
+      let y_pos = document.all ? window.event.clientY : event.pageY;
+
+      this.$parent.selected = element;
+      this.$parent.selectedPosition.x_elem = x_pos - this.$parent.selected.offsetLeft;
+      this.$parent.selectedPosition.y_elem = y_pos - this.$parent.selected.offsetTop;
     },
-    destroy: function(event) {
-      let element = this.findAncestor(event.target, 'sockets');
-      element.style.zIndex = 1;
-      this.selected = null;
-    },
-    move_elem: function(e) {
-      this.x_pos = document.all ? window.event.clientX : e.pageX;
-      this.y_pos = document.all ? window.event.clientY : e.pageY;
-      if (this.selected !== null) {
-        this.selected.style.left = (this.x_pos - this.x_elem) + 'px';
-        this.selected.style.top = (this.y_pos - this.y_elem) + 'px';
-      }
-    }
+    
+    
   }
 }
 </script>
