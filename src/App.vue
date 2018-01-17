@@ -2,25 +2,8 @@
   <div id="app">
     <main-navigation></main-navigation>
     <main id="mainContent">
-
       <div class="main-content">
-        <div>
-          <label>
-            Show signal chain from effect:
-            <select v-model="selectedFirstEffect">
-              <option v-bind:value="{effectIndex: effectIndex, effect: selectedEffect}" v-for="(selectedEffect, effectIndex) in selectedEffects">
-                {{ selectedEffect.manufacturer }} {{ selectedEffect.model }}
-              </option>
-            </select>
-          </label>
-        </div>
-
-        <div v-if="Object.keys(effectChainFromFirstEffect).length">
-          <div is="effect-chain-item" v-bind:effect-chain-item="effectChainFromFirstEffect" v-bind:socket="false" v-if="effectChainFromFirstEffect.connectionTo.length">
-          </div>
-        </div>
-
-
+        <div is="effect-chain"></div>
         <label><input type="checkbox" v-model="showConnections" />Show connections</label>
         <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
         <div is="effect" 
@@ -36,14 +19,14 @@ import * as quark from 'quark-gui';
 import MainNavigation from './components/MainNavigation.vue';
 import PedalBoard from "./components/PedalBoard.vue";
 import Effect from "./components/Effect.vue";
-import EffectChainItem from "./components/EffectChainItem.vue";
+import EffectChain from "./components/EffectChain.vue";
 export default {
   name: 'app',
   components: {
     MainNavigation,
     PedalBoard,
     Effect,
-    EffectChainItem
+    EffectChain
   },
   data () {
     return {
@@ -65,8 +48,6 @@ export default {
         ]
       },
       selectedEffects: [],
-      selectedFirstEffect: {},
-      effectsInSelectedChain: [],
       pedalBoard: {
         dimensions: {width: 930, depth: 570},
         backgroundColor: "#555555",
@@ -75,16 +56,6 @@ export default {
       connections: [],
       availableConnections: [],
       showConnections: false
-    }
-  },
-  computed: {
-    effectChainFromFirstEffect: function (){
-      let effectChainFromFirstEffect = {};
-      this.effectsInSelectedChain = [];
-      if (Object.keys(this.selectedFirstEffect).length !== 0){
-        effectChainFromFirstEffect = this.getEffectsConnectedToEffect(this.selectedFirstEffect.effectIndex);
-      }
-      return effectChainFromFirstEffect;
     }
   },
   methods: {
@@ -101,6 +72,7 @@ export default {
     getEffectConnectedToSocket: function (socketFromId, socketIdsInChain){
       socketIdsInChain = socketIdsInChain !== undefined ? socketIdsInChain : [];
       socketIdsInChain.push(socketFromId);
+
       // Get socket connection
       let effectConnectedToSocket = null;
       let connectedSocketId = this.getConnectionToValueBySocketId(socketFromId);

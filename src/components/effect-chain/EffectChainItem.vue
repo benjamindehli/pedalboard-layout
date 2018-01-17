@@ -17,13 +17,9 @@
 </template>
 
 <script>
-import EffectChainItem from "./EffectChainItem.vue";
 
 export default {
   name: 'EffectChainItem',
-  components: {
-    EffectChainItem
-  },
   data () {
     return {
     }
