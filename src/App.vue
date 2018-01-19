@@ -4,6 +4,7 @@
     <main-navigation></main-navigation>
     <main id="mainContent">
       <div class="main-content">
+        <router-view></router-view>
         <div is="effect-chain"></div>
         <label><input type="checkbox" v-model="showConnections" />Show connections</label>
         <div is="pedal-board" v-bind:metadata="pedalBoard"></div>
@@ -19,6 +20,7 @@
 import * as quark from 'quark-gui';
 import MainNavigation from './components/MainNavigation.vue';
 import PedalBoard from "./components/PedalBoard.vue";
+
 import Effect from "./components/Effect.vue";
 import EffectChain from "./components/EffectChain.vue";
 export default {

@@ -45,14 +45,16 @@ let header = Header.getModule({
     			iconClass: "fa fa-info-circle"
     		},
     		{
-    			name: "Developers",
-    			link: "",
-    			iconClass: "fa fa-code"
+    			name: "Instruments",
+    			link: "\"instruments\"",
+    			iconClass: "fa fa-code",
+                vueRouterLink: true
     		},
     		{
-    			name: "Send feedback",
-    			link: "",
-    			iconClass: "fa fa-comment"
+    			name: "Effects",
+    			link: "\"effects\"",
+    			iconClass: "fa fa-comment",
+                vueRouterLink: true
     		}
     		]
     	}
