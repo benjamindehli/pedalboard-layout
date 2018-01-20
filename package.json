@@ -20,7 +20,8 @@
   "dependencies": {
     "quark-gui": "^0.7.32",
     "vue": "^2.5.11",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
   },
   "browserslist": [
     "> 1%",

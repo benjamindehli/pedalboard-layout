@@ -4,6 +4,8 @@ import App from './App.vue'
 import Style from './style/main.scss'
 import * as quark from 'quark-gui'
 
+import store from './store'
+
 import Home from './pages/Home.vue'
 import Instruments from './pages/Instruments.vue'
 import Instrument from './pages/Instrument.vue'
@@ -30,6 +32,7 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })
 
