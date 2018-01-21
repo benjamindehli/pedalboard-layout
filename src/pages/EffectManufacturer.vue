@@ -1,8 +1,8 @@
 <template>
 	<div>
-		<h1>{{ manufacturer.name }}</h1>
-		<div v-for="(effect, effectId) in manufacturer.effects">
-			<router-link v-bind:to="'/effects/' + effectManufacturerId + '/' + effectId">
+		<h1>{{ manufacturer }}</h1>
+		<div v-for="effect in effectsFromManufacturer">
+			<router-link v-bind:to="'/effects/' + $store.getters.slug(manufacturer) + '/' + $store.getters.slug(effect.model)">
 				{{ effect.model }}
 			</router-link>
 		</div>
@@ -13,10 +13,12 @@
 <script>
 export default {
 	name: 'EffectManufacturer',
-	data () {
-		return {
-			manufacturer: this.$parent.availableEffects.manufacturers[this.$route.params.effectManufacturerId],
-			effectManufacturerId: this.$route.params.effectManufacturerId
+	computed: {
+		manufacturer(){
+			return this.$store.getters.effectManufacturerFromSlug(this.$route.params.effectManufacturerId)
+		},
+		effectsFromManufacturer(){
+			return this.$store.getters.effectsFromManufacturer(this.manufacturer)
 		}
 	}
 }

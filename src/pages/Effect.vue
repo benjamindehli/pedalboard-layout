@@ -1,18 +1,21 @@
 <template>
 	<div>
-		<h1>{{ effect.manufacturer }} {{ effect.model }}</h1>
-
+		<h1>{{ effect.model }}</h1>
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'Effect',
-	data () {
-		return {
-			effect: this.$parent.availableEffects.manufacturers[this.$route.params.effectManufacturerId].effects[this.$route.params.effectId],
-			effectId: this.$route.params.effectId
-
+	computed: {
+		manufacturer(){
+			return this.$store.getters.effectManufacturerFromSlug(this.$route.params.effectManufacturerId)
+		},
+		effect(){
+			return this.$store.getters.effectFromSlugs({
+				effectManufacturer: this.$route.params.effectManufacturerId, 
+				effectModel: this.$route.params.effectId
+			})
 		}
 	}
 }
