@@ -20,7 +20,6 @@ const effects = [];
 effectsByManufacturer.forEach(function (manufacturer){
 	effectManufacturers.push(manufacturer.name);
 	effects.push.apply(effects, manufacturer.effects);
-	console.log(manufacturer.effects);
 });
 
 export default {effectManufacturers: effectManufacturers, effects: effects};
